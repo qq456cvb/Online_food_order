@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+        
+<hibernate-mapping package="model">    
+    
+    <class name="Order" table="orders">
+	<id name="orderId" column="orderId"> 
+        <generator class="native"/> 
+    </id> 
+    <property name="orderTime"/>  
+    <one-to-one name="idle" class="Idle" cascade="save-update" property-ref="order" lazy="false"/> 
+    <set name="orderDish" cascade="all-delete-orphan" inverse="true" lazy="false">
+		<key column="orderId" />
+		<one-to-many class="OrderDish" />
+	</set>
+    </class>
+    
+</hibernate-mapping>

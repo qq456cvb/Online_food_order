@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+        
+<hibernate-mapping package="model">    
+    
+    <class name="Restaurant" table="restaurants">
+	<id name="id" column="restId"> 
+        <generator class="native"/> 
+    </id> 
+    <property name="restName"/> 
+    <property name="place"/> 
+    <property name="inventory"/>  
+    <property name="contact"/> 
+    <property name="info"/> 
+    <property name="restimg"/> 
+    <many-to-one name="menu" cascade="all-delete-orphan" class="Menu" unique="true" column="menuId" lazy="false"/>
+    <many-to-one name="owner" column="salerId" class="Saler" lazy="false"/> 
+    <set name="favors" cascade="all-delete-orphan" inverse="true" lazy="false">
+		<key column="restId" />
+		<one-to-many class="Favor" />
+	</set>
+	<set name="vips" cascade="all-delete-orphan" inverse="true" lazy="false">
+		<key column="restId" />
+		<one-to-many class="Vip" />
+	</set>
+	<set name="idles" cascade="all-delete-orphan" inverse="true" lazy="false">
+		<key column="restId" />
+		<one-to-many class="Idle" />
+	</set>
+	<set name="comments" cascade="all-delete-orphan" inverse="true" lazy="false">
+		<key column="restId" />
+		<one-to-many class="Comment" />
+	</set>
+    </class>
+    
+</hibernate-mapping>

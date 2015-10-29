@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+        
+<hibernate-mapping package="model">    
+    
+    <class name="Menu" table="menus">
+	<id name="menuId" column="menuId"> 
+        <generator class="native"/> 
+    </id> 
+    <one-to-one name="rest" class="Restaurant" property-ref="menu" cascade="save-update" lazy="false"/> 
+    <set name="dishes" cascade="all-delete-orphan" inverse="true" lazy="false">
+		<key column="menuId" />
+		<one-to-many class="Dish" />
+	</set>
+    </class>
+    
+</hibernate-mapping>

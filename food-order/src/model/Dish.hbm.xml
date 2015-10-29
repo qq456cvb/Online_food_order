@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+        
+<hibernate-mapping package="model">    
+    
+    <class name="Dish" table="dishes">
+	<id name="dishId" column="dishId"> 
+        <generator class="native"/> 
+    </id> 
+    <property name="dishName"/> 
+    <property name="price"/> 
+    <property name="stat"/>  
+    <property name="info" column="dishInfo"/>
+     <property name="dishimg"/>
+    <many-to-one name="menu" column="menuId" class="Menu" lazy="false"/> 
+	<set name="orderDish" cascade="all-delete-orphan" inverse="true" lazy="false">
+		<key column="dishId" />
+		<one-to-many class="OrderDish" />
+	</set>
+    </class>
+    
+</hibernate-mapping>

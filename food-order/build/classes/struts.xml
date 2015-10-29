@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<!-- class的交给spring管理-->
+	<constant name="struts.objectFactory" value="spring"></constant>
+	<constant name="struts.i18n.encoding" value="utf-8"></constant>
+	
+	<!-- 指定国际化资源文件的baseName为messageResource -->  
+    <constant name="struts.custom.i18n.resources" value="messageResource" />  
+  
+  
+    <!-- 上传的全部图片的最大限制-->  
+    <constant name="struts.multipart.maxSize" value="1024102400" />  
+      
+    <!-- 临时存放文件的路径 -->  
+    <constant name="struts.multipart.saveDir" value="e:/images" />
+    
+	<package name="food" extends="struts-default">
+	    <action name="fileUpload" class="fileUploadAction">  
+            <!-- 限制图片的格式和图片的大小 -->  
+            <interceptor-ref name="fileUpload">  
+                <param name="allowedTypes">  
+                  image/bmp,image/png,image/gif,image/jpeg,image/pjpeg  
+                </param>  
+            </interceptor-ref>  
+            <!-- 默认的拦截器，必须要写 -->  
+            <interceptor-ref name="defaultStack" />  
+             <result name="input">error.jsp</result>  
+             <result name="rest">restIndex.jsp</result>
+            <result name="customer">cusIndex.jsp</result>  
+            <result name="menu">mgrMenu.jsp</result>  
+  
+        </action>  
+        
+		<action name="login" class="loginAction">
+			<result name="manager">mgrIndex.jsp</result>
+			<result name="saler">salerIndex.jsp</result>
+			<result name="customer">index.jsp</result>
+			<result name="input">login.jsp</result>
+			<result name="error">errorlog.jsp</result>
+		</action>
+		
+		<action name="cm_*"	class="commentAction" method="{1}">
+		    <result name="success">jumpRest.jsp</result>
+		</action>
+		
+		<action name="register" class="registerAction">
+            <result name="success">sreg.jsp</result>   
+			<result name="error">error.jsp</result>
+		</action>
+		
+		<action name="manageSaler" class="manageAction">
+			<result name="success">mgrIndex.jsp</result>
+			<result name="input">updateRow.jsp</result>
+			<result name="error">error.jsp</result>
+		</action>
+		
+		<action name="manageRes" class="manageResAction">
+			<result name="success">mgrRes.jsp</result>
+			<result name="error">error.jsp</result>
+		</action>
+		
+		<action name="manageVip" class="manageVipAction">
+			<result name="success">mgrVip.jsp</result>
+			<result name="error">error.jsp</result>
+		</action>
+		
+		<action name="enterForum" class="enterForumAction">
+			<result name="success">forum.jsp</result>
+			<result name="error">jumplog.jsp</result>
+		</action>
+		
+		
+		<action name="logout" class="logoutAction">
+			<result name="success">index.jsp</result>
+		</action>
+		
+		<action name="submitFeed" class="submitFeedAction">
+			<result name="success">index.jsp</result>
+		</action>
+		
+		<action name="alterRest" class="alterRestAction">
+		    <result name="update">restIndex.jsp</result>
+		    <result name="success">index.jsp</result>
+		    <result name="add">salerIndex.jsp</result>
+		    <result name="delete">salerIndex.jsp</result>
+			<result name="search">ssearch.jsp</result>
+			<result name="error">error.jsp</result>
+		</action>
+		
+		<action name="addFavor" class="addFavorAction">
+			<result name="success">success.jsp</result>
+			<result name="input">jumplog.jsp</result>
+			<result name="error">index.jsp</result>
+		</action>
+		
+		<action name="removeFavor" class="removeFavorAction">
+			<result name="success">index.jsp</result>
+			<result name="error">index.jsp</result>
+		</action>
+		
+		<action name="enterRest" class="enterRestAction">
+			<result name="success">restIndex.jsp</result>
+			<result name="input">login.jsp</result>
+			<result name="error">error.jsp</result>
+		</action>
+		
+		<action name="alterIdle" class="alterIdleAction">
+			<result name="success">idles.jsp</result>
+			<result name="error">error.jsp</result>
+		</action>
+		
+		<action name="reserve" class="reserveAction">
+			<result name="success">idles.jsp</result>
+			<result name="error">error.jsp</result>
+		</action>
+		
+		<action name="showCusRestIdles" class="showCusRestIdlesAction">
+			<result name="success">idles.jsp</result>
+			<result name="error">error.jsp</result>
+		</action>
+		
+		<action name="queryRest" class="queryRestAction">
+			<result name="success">index.jsp</result>
+			<result name="error">error.jsp</result>
+		</action>
+		
+		<action name="orderFood" class="orderFoodAction">
+			<result name="success">orderFood.jsp</result>
+			<result name="error">error.jsp</result>
+		</action>
+		
+		<action name="submitOrder" class="submitOrderAction">
+			<result name="success">orderFood.jsp</result>
+			<result name="error">error.jsp</result>
+		</action>
+		
+		<action name="editMenu" class="editMenuAction">
+			<result name="success">mgrMenu.jsp</result>
+			<result name="error">error.jsp</result>
+		</action>
+	
+		<action name="editUser" class="editUserAction">
+			<result name="customer">cusIndex.jsp</result>
+			<result name="saler">salerIndex.jsp</result>
+			<result name="error">error.jsp</result>
+		</action>
+		
+		<action name="index">
+			<result>/index.jsp</result>
+		</action>
+		
+	</package>
+</struts>

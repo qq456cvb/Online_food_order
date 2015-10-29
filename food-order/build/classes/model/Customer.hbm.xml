@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+        
+<hibernate-mapping package="model">    
+    
+    <class name="Customer" table="customers" >
+	<id name="id" column="cusId" type="java.lang.Long"> 
+        <generator class="native"/> 
+    </id> 
+    <property name="name" type="java.lang.String"/> 
+    <property name="age" type="java.lang.Long"/>  
+    <property name="userName" type="java.lang.String"></property>
+    <property name="passWord" type="java.lang.String"/> 
+	<property name="email" type="java.lang.String"/> 
+	<property name="cusimg" type="java.lang.String"/>
+    <set name="favors" cascade="all-delete-orphan" inverse="true" lazy="false">
+		<key column="cusId" />
+		<one-to-many class="Favor" />
+	</set>
+	<set name="vips" cascade="all-delete-orphan" inverse="true" lazy="false">
+		<key column="cusId" />
+		<one-to-many class="Vip" />
+	</set>
+	<set name="idles" cascade="all-delete-orphan" inverse="true" lazy="false">
+		<key column="cusId" />
+		<one-to-many class="Idle" />
+	</set>
+	<set name="feedbacks" cascade="all-delete-orphan" inverse="true" lazy="false">
+		<key column="cusId" />
+		<one-to-many class="Feedback" />
+	</set>
+	<set name="comments" cascade="all-delete-orphan" inverse="true" lazy="false">
+		<key column="cusId" />
+		<one-to-many class="Comment" />
+	</set>
+    </class>
+    
+</hibernate-mapping>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+        
+<hibernate-mapping package="model">    
+    
+    <class name="Saler" table="salers">
+	<id name="id" column="salerId"> 
+        <generator class="native"/> 
+    </id> 
+    <property name="name"/> 
+    <property name="age"/>  
+    <property name="userName"></property>
+    <property name="passWord"/> 
+    <property name="email"/> 
+    <property name="stat"/>
+	<set name="rests" cascade="all-delete-orphan" inverse="true" lazy="false">
+		<key column="salerId" />
+		<one-to-many class="Restaurant" />
+	</set>
+    </class>
+    
+</hibernate-mapping>
